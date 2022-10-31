@@ -13,7 +13,22 @@ package edu.ncsu.csc216.stp.model.util;
  * @author William Morgan
  * @param <E> the generic type that the SwapList can hold
  */
-public class SwapList<E> implements ISwapList<E>{
+public class SwapList<E> implements ISwapList<E> {
+	
+	/**
+	 * Field to hold the initial capacity of the list
+	 */
+	private static final int INITIAL_CAPACITY = 10;
+	
+	/**
+	 * The underlying array that the list is based around. Holds objects of the generic type.
+	 */
+	private E[] list;
+	
+	/**
+	 * Field to hold the current number of elements in the list
+	 */
+	private int size;
 
 	/**
 	 * Adds an element to the end of the list.
@@ -39,6 +54,17 @@ public class SwapList<E> implements ISwapList<E>{
 	public E remove(int idx) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Private method to check the index
+	 * @param idx the index to check
+	 * @throws IndexOutOfBoundsException of the given index is out of the list bounds.
+	 */
+	private void checkIndex(int idx) {
+		if (idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
 	}
 
 	/**

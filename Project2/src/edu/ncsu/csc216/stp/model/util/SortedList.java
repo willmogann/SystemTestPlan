@@ -62,6 +62,17 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * Private method to check the index
+	 * @param idx the index to check
+	 * @throws IndexOutOfBoundsException of the given index is out of the list bounds.
+	 */
+	private void checkIndex(int idx) {
+		if (idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
+	}
 
 	/**
 	 * Searches the list and attempts to find the given element. If the element 

@@ -54,7 +54,7 @@ public class TestCase {
 	/**
 	 * Constructs a new TestCase. Sets each field to the given parameters.
 	 * The testResults field is constructed to an empty Log of TestResult objects.
-	 * The testPlan field is set to null
+	 * The testPlan field is set to null. 
 	 * 
 	 * @param testCaseId the test case Id to set
 	 * @param testType the test type to set
@@ -141,12 +141,79 @@ public class TestCase {
 		this.expectedResults = expectedResults;
 	}
 	
+	
 	/**
 	 * Creates a test result from the given values and adds it to the end of
-	 * the log.
+	 * the log. If the Test Result cannot be constructed, an IllegalArgumentException
+	 * is thrown. 
+	 * 
+	 * @param passing the boolean of whether the test is passing or not
+	 * @param actualResults the actual results of the test execution
+	 * @throws IllegalArgumentException if the TestResult cannot be constructed
 	 */
 	public void addTestResult(boolean passing, String actualResults) {
 		
 	}
 	
+	/**
+	 * Checks whether the test case is passing or not. 
+	 * This method will return true if the last TestResult in the log is passing.
+	 * If there are no TestResults in the log, then the test case is considered failing.
+	 * 
+	 * @return whether the test case is passing or not
+	 */
+	public boolean isTestCasePassing() {
+		return false;
+	}
+	
+	/**
+	 * Returns the status of the test case as PASS or FAIL. uses static fields from
+	 * test case class.
+	 * 
+	 * @return the status of the test case
+	 */
+	public String getStatus() {
+		return null;
+	}
+	
+	/**
+	 * Creates and returns a string representation of the testResults log. 
+	 * Each test result has a leading "- " and a newline is added to the end.
+	 * This method uses the TestResult.toString() method to help convert each
+	 * test result to a string.
+	 * 
+	 * @return the string representation of the testResults log
+	 */
+	public String getActualResultsLog() {
+		return null;
+	}
+	
+	/**
+	 * Sets the current test plan to the test plan value in the field.
+	 * 
+	 * @param testPlan the test plan that will be set
+	 * @throws IllegalArgumentException if the testPlan parameter is null
+	 */
+	public void setTestPlan(TestPlan testPlan) {
+		
+	}
+	
+	/**
+	 * Returns the current test plan
+	 * @return the current test plan
+	 */
+	public TestPlan getTestPlan() {
+		return this.testPlan;
+	}
+	
+	/**
+	 * Creates and returns a string representation of the current test case. 
+	 * This method will use the getActualResultsLog method in order to help build the string.
+	 * This method creates a string based on the data storage requirement and is used for file IO.
+	 * 
+	 * @return the string representation of the test case.
+	 */
+	public String toString() {
+		return null;
+	}
 }

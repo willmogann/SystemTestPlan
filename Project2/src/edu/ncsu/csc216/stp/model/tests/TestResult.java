@@ -84,7 +84,7 @@ public class TestResult {
 	
 	/**
 	 * Constructs a string representation of the TestResult for printing to file
-	 * and the GUI. 
+	 * and the GUI. This method will use the static constants to fill fields.
 	 * 
 	 * @return the string representation of the test result
 	 */
