@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests the TestPlanReader class
+ * Tests the TestPlanWriter class
  * 
  * @author William Morgan
  *
  */
-class TestPlanReaderTest {
+class TestPlanWriterTest {
 
 	/**
-	 * Tests the readTestPlansFile() method
+	 * Tests the writeTestPlanFile() method
 	 */
 	@Test
-	void testReadTestPlansFile() {
+	void testWriteTestPlanFile() {
 		fail("Not yet implemented");
 	}
 
