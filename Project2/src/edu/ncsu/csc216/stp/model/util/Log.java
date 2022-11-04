@@ -35,8 +35,10 @@ public class Log<E> implements ILog<E> {
 	 * underlying array with the initial size and sets the size 
 	 * field to zero. 
 	 */
+	@SuppressWarnings("unchecked")
 	public Log() {
-		
+		size = 0;
+		log = (E[]) new Object[INIT_CAPACITY];
 	}
 
 	/**
@@ -48,8 +50,28 @@ public class Log<E> implements ILog<E> {
 	 */
 	@Override
 	public void add(E element) {
-		// TODO Auto-generated method stub
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
+		if (size() == log.length) {
+			growArray();
+		}
+		log[size] = element;
+		size++;
+	}
+	
+	/**
+	 * Doubles the size of the list in the event the list has reached maximum
+	 * capacity
+	 */
+	@SuppressWarnings("unchecked")
+	private void growArray() {
+		E[] temp = log;
+		log = (E[]) new Object[size() * 2];
+
+		for (int i = 0; i < temp.length; i++) {
+			log[i] = temp[i];
+		}
 	}
 
 	/**
@@ -59,8 +81,10 @@ public class Log<E> implements ILog<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
+		return log[idx];
 	}
 
 	/**
