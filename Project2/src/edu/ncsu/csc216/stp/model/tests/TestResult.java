@@ -43,6 +43,7 @@ public class TestResult {
 	 * @param actualResults the actual results of the test execution
 	 */
 	public TestResult(boolean passing, String actualResults) {
+		setPassing(passing);
 		setActualResults(actualResults);
 	}
 
@@ -89,7 +90,11 @@ public class TestResult {
 	 * @return the string representation of the test result
 	 */
 	public String toString() {
-		return null;
+		if (isPassing()) {
+			return PASS + ": " + actualResults;
+		} else {
+			return FAIL + ": " + actualResults;
+		}
 	}
 	
 }
