@@ -36,6 +36,26 @@ class LogTest {
 		assertEquals("Hello", log.get(0));
 		log.add("World!");
 		assertEquals("World!", log.get(1));
+		// add filler to test grow array
+		log.add("World!");
+		assertEquals("World!", log.get(2));
+		log.add("World!");
+		assertEquals("World!", log.get(3));
+		log.add("World!");
+		assertEquals("World!", log.get(4));
+		log.add("World!");
+		assertEquals("World!", log.get(5));
+		log.add("World!");
+		assertEquals("World!", log.get(6));
+		log.add("World!");
+		assertEquals("World!", log.get(7));
+		log.add("World!");
+		assertEquals("World!", log.get(8));
+		log.add("World!");
+		assertEquals("World!", log.get(9));
+		
+		log.add("Filler");
+		assertEquals(11, log.size());
 	}
 
 	/**

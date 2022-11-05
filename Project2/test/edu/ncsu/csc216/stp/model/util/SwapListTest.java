@@ -49,7 +49,17 @@ class SwapListTest {
 		Exception e1 = assertThrows(NullPointerException.class, () -> list.add(null));
 		assertEquals("Cannot add null element.", e1.getMessage());
 		
+		// add filler to test check capacity
+		list.add("!");
+		list.add("!");
+		list.add("!");
+		list.add("!");
+		list.add("!");
+		list.add("!");
+		list.add("!");
 		
+		list.add("Filler");
+		assertEquals(11, list.size());
 	}
 
 	/**
