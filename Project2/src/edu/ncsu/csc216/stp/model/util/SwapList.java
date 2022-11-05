@@ -29,6 +29,16 @@ public class SwapList<E> implements ISwapList<E> {
 	 * Field to hold the current number of elements in the list
 	 */
 	private int size;
+	
+	/**
+	 * Constructs a new SwapList. Sets the size to zero and initializes a new empty
+	 * underlying array.
+	 */
+	@SuppressWarnings("unchecked")
+	public SwapList() {
+		this.size = 0;
+		this.list = (E[]) new Object[INITIAL_CAPACITY];
+	}
 
 	/**
 	 * Adds an element to the end of the list.
@@ -39,8 +49,34 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void add(E element) {
-		// TODO Auto-generated method stub
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
+		try {
+			checkCapacity(size);
+			list[size()] = element;
+			size++;
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("Cannot add element.");
+		}
+	}
+	
+	/**
+	 * Private method that makes sure the array can fit one more element,
+	 * if the array cannot hold an additional element, the array is grown
+	 * to twice its size.
+	 * @param size the size of the array to check
+	 */
+	@SuppressWarnings("unchecked")
+	private void checkCapacity(int size) {
+		if (size == list.length) {
+			E[] temp = list;
+			list = (E[]) new Object[size() * 2];
+
+			for (int i = 0; i < temp.length; i++) {
+				list[i] = temp[i];
+			}
+		}
 	}
 
 	/**
@@ -52,8 +88,14 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(idx);
+		E item = list[idx];
+		for (int i = idx; i < size() - 1; i++) {
+			list[i] = list[i + 1];
+		}
+		list[size() - 1] = null;
+		size--;
+		return item;
 	}
 	
 	/**
@@ -76,8 +118,12 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveUp(int idx) {
-		// TODO Auto-generated method stub
-		
+		checkIndex(idx);
+		if (idx > 0) {
+			E temp = list[idx - 1];
+			list[idx - 1] = list[idx];
+			list[idx] = temp;
+		}
 	}
 
 	/**
@@ -89,8 +135,12 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveDown(int idx) {
-		// TODO Auto-generated method stub
-		
+		checkIndex(idx);
+		if (idx < size() - 1) {
+			E temp = list[idx + 1];
+			list[idx + 1] = list[idx];
+			list[idx] = temp;
+		}
 	}
 
 	/**
@@ -102,8 +152,14 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToFront(int idx) {
-		// TODO Auto-generated method stub
-		
+		checkIndex(idx);
+		if (idx > 0) {
+			E temp = list[idx];
+			for (int i = idx; i > 0; i--) {
+				list[i] = list[i - 1];
+			}
+			list[0] = temp;
+		}
 	}
 
 	/**
@@ -115,8 +171,14 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToBack(int idx) {
-		// TODO Auto-generated method stub
-		
+		checkIndex(idx);
+		if (idx < size() - 1) {
+			E temp = list[idx];
+			for (int i = idx; i < size() - 1; i++) {
+				list[i] = list[i + 1];
+			}
+			list[size() - 1] = temp;
+		}
 	}
 
 	/**
@@ -124,11 +186,12 @@ public class SwapList<E> implements ISwapList<E> {
 	 * 
 	 * @param idx the index of the element to return
 	 * @return the element at the given index
+	 * @throws IndexOutOfBoundsException if the index is out of bounds of the list
 	 */
 	@Override
 	public E get(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(idx);
+		return list[idx];
 	}
 
 	/**
@@ -137,8 +200,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 }

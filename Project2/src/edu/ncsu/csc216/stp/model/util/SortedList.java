@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.stp.model.util;
 
+
 /**
  * This class is an implementation of a LinkedList which keeps elements added
  * in a sorted order. This class implements the ISortedList interface and the
@@ -33,7 +34,8 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * Constructs a new SortedList. Sets the size to zero and the front ListNode to null.
 	 */
 	public SortedList() {
-		
+		this.size = 0;
+		this.front = null;
 	}
 
 	/**
@@ -46,8 +48,22 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public void add(E element) {
-		// TODO Auto-generated method stub
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
+		if (contains(element)) {
+			throw new IllegalArgumentException("Cannot add duplicate element.");
+		}
+		if (front == null) {
+			front = new ListNode(element, null);
+		} else {
+			ListNode current = front;
+			while (current.next != null) {
+				current = current.next;
+			}
+			current.next = new ListNode(element, null);
+		}
+		size++;
 	}
 
 	/**
@@ -59,8 +75,22 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(idx);
+		if (idx == 0) {
+			E temp = front.data;
+			front = front.next;
+			size--;
+			return temp;
+		} else {
+			ListNode current = front;
+			for (int i = 0; i < idx - 1; i++) {
+				current = current.next;
+			}
+			E temp = current.next.data;
+			current.next = current.next.next;
+			size--;
+			return temp;
+		}
 	}
 	
 	/**
@@ -69,7 +99,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * @throws IndexOutOfBoundsException of the given index is out of the list bounds.
 	 */
 	private void checkIndex(int idx) {
-		if (idx < 0 || idx >= size) {
+		if (idx < 0 || idx >= size()) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 	}
@@ -83,8 +113,18 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public boolean contains(E element) {
-		// TODO Auto-generated method stub
-		return false;
+		if (front == null) {
+			return false;
+		} else {
+			ListNode current = front;
+			while (current.next != null) {
+				if (current.data.equals(element)) {
+					return true;
+				}
+				current = current.next;
+			}
+			return front.data.equals(element);
+		}
 	}
 
 	/**
@@ -96,8 +136,16 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(idx);
+		if (front == null) {
+			return null;
+		} else {
+			ListNode current = front;
+			for (int i = 0; i < idx; i++) {
+				current = current.next;
+			}
+			return current.data;
+		}
 	}
 
 	/**
@@ -106,8 +154,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 	
 	/**
@@ -134,7 +181,8 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		 * @param next the next ListNode in the list
 		 */
 		public ListNode(E data, ListNode next) {
-			
+			this.data = data;
+			this.next = next;
 		}
 	}
 
