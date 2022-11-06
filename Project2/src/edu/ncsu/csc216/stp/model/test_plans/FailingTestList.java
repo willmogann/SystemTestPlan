@@ -29,7 +29,6 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	public FailingTestList() {
 		super(FAILING_TEST_LIST_NAME);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -40,8 +39,17 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	@Override
 	public String[][] getTestCasesAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		String[][] returnArray = new String[getTestCases().size()][3];
+		for (int i = 0; i < returnArray.length; i++) {
+			returnArray[i][0] = getTestCases().get(i).getTestCaseId();
+			returnArray[i][1] = getTestCases().get(i).getTestType();
+			if (getTestCases().get(i).getTestPlan() == null) {
+				returnArray[i][2] = "";
+			} else {
+				returnArray[i][2] = getTestCases().get(i).getTestPlan().getTestPlanName();
+			}
+		}
+		return returnArray;
 	}
 	
 	/**
@@ -52,7 +60,11 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	@Override
 	public void addTestCase(TestCase testCaseToAdd) {
-		
+		if (testCaseToAdd.isTestCasePassing()) {
+			throw new IllegalArgumentException("Cannot add passing test case.");
+		} else {
+			super.addTestCase(testCaseToAdd);
+		}
 	}
 	
 	/**
@@ -64,15 +76,22 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	@Override
 	public void setTestPlanName(String testPlanName) {
-		
+		if (!testPlanName.equalsIgnoreCase(FAILING_TEST_LIST_NAME)) {
+			throw new IllegalArgumentException("The Failing Tests list cannot be edited.");
+		} else {
+			super.setTestPlanName(FAILING_TEST_LIST_NAME);
+		}
 	}
 	
 	/**
-	 * Clears the FailingTestList of all TestCases. Sets the testCases field to an empty
-	 * SwapList.
+	 * Clears the FailingTestList of all TestCases. Uses the remove method
+	 * to remove each test case
 	 */
 	public void clearTests() {
-		
+		int size = getTestCases().size();
+		for (int i = 0; i < size; i++) {
+			removeTestCase(0);
+		}
 	}
 
 }
