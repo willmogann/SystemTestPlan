@@ -25,7 +25,7 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 */
 	public TestPlan(String testPlanName) {
 		super(testPlanName);
-		if (testPlanName.equals(FailingTestList.FAILING_TEST_LIST_NAME)) {
+		if (testPlanName.equalsIgnoreCase(FailingTestList.FAILING_TEST_LIST_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 	}
@@ -39,8 +39,13 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 */
 	@Override
 	public String[][] getTestCasesAsArray() {
-		// TODO Auto-generated method stub
-		return null;
+		String[][] returnArray = new String[getTestCases().size()][3];
+		for (int i = 0; i < returnArray.length; i++) {
+			returnArray[i][0] = getTestCases().get(i).getTestCaseId();
+			returnArray[i][1] = getTestCases().get(i).getTestType();
+			returnArray[i][2] = getTestCases().get(i).getStatus();
+		}
+		return returnArray;
 	}
 
 	/**
@@ -65,7 +70,22 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 */
 	@Override
 	public int compareTo(TestPlan o) {
-		// TODO Auto-generated method stub
+		if (!this.getTestPlanName().equalsIgnoreCase(o.getTestPlanName())) {
+			String thisPlanName = this.getTestPlanName().toLowerCase();
+			String otherPlanName = o.getTestPlanName().toLowerCase();
+			int shorterLength = (thisPlanName.length() < otherPlanName.length()) ? thisPlanName.length() : otherPlanName.length();
+			for (int i = 0; i < shorterLength; i++) {
+				if (thisPlanName.charAt(i) < otherPlanName.charAt(i))
+					return -1;
+				if (thisPlanName.charAt(i) > otherPlanName.charAt(i))
+					return 1;
+			}
+			if (thisPlanName.length() < otherPlanName.length()) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
 		return 0;
 	}
 
