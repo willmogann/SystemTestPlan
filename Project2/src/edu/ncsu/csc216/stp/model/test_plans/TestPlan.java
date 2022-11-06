@@ -51,7 +51,8 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 */
 	@Override
 	public void addTestCase(TestCase testCaseToAdd) {
-		
+		super.addTestCase(testCaseToAdd);
+		testCaseToAdd.setTestPlan(this);
 	}
 	
 	/**

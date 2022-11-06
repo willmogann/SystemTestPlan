@@ -83,7 +83,7 @@ public abstract class AbstractTestPlan {
 	 * @throws IllegalArgumentException if the element cannot be added
 	 */
 	public void addTestCase(TestCase testCaseToAdd) {
-		
+		testCases.add(testCaseToAdd);
 	}
 	
 	/**
@@ -94,7 +94,7 @@ public abstract class AbstractTestPlan {
 	 * @throws IndexOutOfBoundsException if the index is out of bounds of the list
 	 */
 	public TestCase removeTestCase(int idx) {
-		return null;
+		return testCases.remove(idx);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public abstract class AbstractTestPlan {
 	 * @throws IndexOutOfBoundsException if the index is out of bounds of the list
 	 */
 	public TestCase getTestCase(int idx) {
-		return null;
+		return testCases.get(idx);
 	}
 	
 	/**
@@ -114,7 +114,13 @@ public abstract class AbstractTestPlan {
 	 * @return the number of failing tests in the test plan
 	 */
 	public int getNumberOfFailingTests() {
-		return 0;
+		int counter = 0;
+		for (int i = 0; i < testCases.size(); i++) {
+			if (!testCases.get(i).isTestCasePassing()) {
+				counter++;
+			}
+		}
+		return counter;
 	}
 	
 	/**
@@ -127,7 +133,7 @@ public abstract class AbstractTestPlan {
 	 * @throws IllegalArgumentException if the TestResult cannot be constructed
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
-		
+		testCases.get(idx).addTestResult(passing, actualResults);
 	}
 	
 	/**
