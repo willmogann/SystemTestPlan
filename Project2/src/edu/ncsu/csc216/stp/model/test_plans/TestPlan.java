@@ -73,7 +73,7 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 		if (!this.getTestPlanName().equalsIgnoreCase(o.getTestPlanName())) {
 			String thisPlanName = this.getTestPlanName().toLowerCase();
 			String otherPlanName = o.getTestPlanName().toLowerCase();
-			int shorterLength = (thisPlanName.length() < otherPlanName.length()) ? thisPlanName.length() : otherPlanName.length();
+			int shorterLength = thisPlanName.length() < otherPlanName.length() ? thisPlanName.length() : otherPlanName.length();
 			for (int i = 0; i < shorterLength; i++) {
 				if (thisPlanName.charAt(i) < otherPlanName.charAt(i))
 					return -1;
