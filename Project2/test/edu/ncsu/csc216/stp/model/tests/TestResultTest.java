@@ -17,7 +17,7 @@ class TestResultTest {
 	 */
 	@Test
 	void testTestResult() {
-		TestResult tr = new TestResult(false, "Actual Results");
+		TestResult tr = assertDoesNotThrow(() -> new TestResult(false, "Actual Results"), "Should not throw exception");
 		assertFalse(tr.isPassing());
 		assertEquals("Actual Results", tr.getActualResults());
 		
@@ -33,7 +33,7 @@ class TestResultTest {
 	 */
 	@Test
 	void testToString() {
-		TestResult tr = new TestResult(false, "Actual Results");
+		TestResult tr = assertDoesNotThrow(() -> new TestResult(false, "Actual Results"), "Should not throw exception");
 		assertEquals("FAIL: Actual Results", tr.toString());
 		TestResult tr1 = new TestResult(true, "Actual Results");
 		assertEquals("PASS: Actual Results", tr1.toString());

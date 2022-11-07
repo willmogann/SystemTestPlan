@@ -33,7 +33,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testTestCase() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		assertNull(tc.getTestPlan());
 		assertEquals("", tc.getActualResultsLog());
 		assertEquals(TEST_CASE_ID, tc.getTestCaseId());
@@ -84,7 +85,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testAddTestResult() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		tc.addTestResult(true, "Actual Results Here");
 		assertEquals("- PASS: Actual Results Here", tc.getActualResultsLog());
 	}
@@ -94,7 +96,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testIsTestCasePassing() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		assertFalse(tc.isTestCasePassing());
 		tc.addTestResult(false, "Actual Results Here");
 		assertFalse(tc.isTestCasePassing());
@@ -107,7 +110,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testGetStatus() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		assertEquals(TestResult.FAIL, tc.getStatus());
 		tc.addTestResult(false, "Actual Results Here");
 		assertEquals(TestResult.FAIL, tc.getStatus());
@@ -128,7 +132,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testSetTestPlan() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		TestPlan tp = new TestPlan("Title");
 		tc.setTestPlan(tp);
 		assertEquals(tp, tc.getTestPlan());
@@ -150,7 +155,8 @@ class TestCaseTest {
 	 */
 	@Test
 	void testToString() {
-		TestCase tc = new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS);
+		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
+				"Should not throw exception");
 		tc.addTestResult(false, "Actual Results Here");
 		tc.addTestResult(true, "Passing results");
 		String expected = "# testcase1,Equivalence Class\n"

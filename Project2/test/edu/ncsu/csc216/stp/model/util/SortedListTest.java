@@ -17,7 +17,7 @@ class SortedListTest {
 	 */
 	@Test
 	void testSortedList() {
-		SortedList<String> list = new SortedList<>();
+		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 	}
 
@@ -26,7 +26,7 @@ class SortedListTest {
 	 */
 	@Test
 	void testAdd() {
-		SortedList<String> list = new SortedList<>();
+		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
 		list.add("Hello");
 		// test size
 		assertEquals(1, list.size());
@@ -57,7 +57,7 @@ class SortedListTest {
 	 */
 	@Test
 	void testRemove() {
-		SortedList<String> list = new SortedList<>();
+		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
 		list.add("Hello");
 		// test size
 		assertEquals(1, list.size());
@@ -112,7 +112,7 @@ class SortedListTest {
 	 */
 	@Test
 	void testContains() {
-		SortedList<String> list = new SortedList<>();
+		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
 		list.add("Hello");
 		assertTrue(list.contains("Hello"));
 		assertFalse(list.contains("World"));
@@ -123,7 +123,7 @@ class SortedListTest {
 	 */
 	@Test
 	public void testGetInvalid() {
-		SortedList<String> list = new SortedList<>();
+		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
 		list.add("Hello");
 		Exception e1 = assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
 		assertEquals("Invalid index.", e1.getMessage());

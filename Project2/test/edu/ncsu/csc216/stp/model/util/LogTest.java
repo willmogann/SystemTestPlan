@@ -17,7 +17,7 @@ class LogTest {
 	 */
 	@Test
 	void testLog() {
-		Log<String> log = new Log<>();
+		Log<String> log = assertDoesNotThrow(() -> new Log<>(), "Should not throw exception");
 		assertEquals(0, log.size());
 	}
 
@@ -26,7 +26,7 @@ class LogTest {
 	 */
 	@Test
 	void testAdd() {
-		Log<String> log = new Log<>();
+		Log<String> log = assertDoesNotThrow(() -> new Log<>(), "Should not throw exception");
 		
 		// test for null pointer exception
 		Exception e1 = assertThrows(NullPointerException.class, () -> log.add(null));
@@ -64,7 +64,7 @@ class LogTest {
 	@Test
 	void testGet() {
 		// test for out of bounds
-		Log<String> log = new Log<>();
+		Log<String> log = assertDoesNotThrow(() -> new Log<>(), "Should not throw exception");
 		log.add("Hello");
 		assertEquals("Hello", log.get(0));
 		Exception e1 = assertThrows(IndexOutOfBoundsException.class, () -> log.get(1));

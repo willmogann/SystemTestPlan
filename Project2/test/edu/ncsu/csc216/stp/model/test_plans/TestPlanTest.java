@@ -19,7 +19,7 @@ class TestPlanTest {
 	 */
 	@Test
 	void testTestPlan() {
-		TestPlan tp = new TestPlan("Test Plan Name");
+		TestPlan tp = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		assertEquals("Test Plan Name", tp.getTestPlanName());
 		assertEquals(0, tp.getTestCases().size());
 		
@@ -35,7 +35,7 @@ class TestPlanTest {
 	 */
 	@Test
 	void testAddTestCase() {
-		TestPlan tp = new TestPlan("Test Plan Name");
+		TestPlan tp = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		tp.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		assertEquals(1, tp.getTestCases().size());
 		assertEquals(tp, tp.getTestCase(0).getTestPlan());
@@ -54,7 +54,7 @@ class TestPlanTest {
 	void testGetTestCasesAsArray() {
 		String[][] expected = { { "id", "type", "FAIL" },
 								{ "id1", "type1", "PASS" } }; 
-		TestPlan tp = new TestPlan("Test Plan Name");
+		TestPlan tp = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		tp.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		tp.addTestResult(0, false, "Actual results");
 		tp.addTestCase(new TestCase("id1", "type1", "description1", "expected results1"));
@@ -74,10 +74,10 @@ class TestPlanTest {
 	 */
 	@Test
 	void testCompareTo() {
-		TestPlan tp = new TestPlan("Test Plan Name");
-		TestPlan tp1 = new TestPlan("Test Plan Name");
-		TestPlan tp2 = new TestPlan("Different Test Plan Name");
-		TestPlan tp3 = new TestPlan("Test Plan Name with extra text");
+		TestPlan tp = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		TestPlan tp1 = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		TestPlan tp2 = assertDoesNotThrow(() -> new TestPlan("Different Test Plan Name"), "Should not throw exception");
+		TestPlan tp3 = assertDoesNotThrow(() -> new TestPlan("Test Plan Name with extra text"), "Should not throw exception");
 		
 		assertEquals(0, tp.compareTo(tp1));
 		assertEquals(1, tp.compareTo(tp2));

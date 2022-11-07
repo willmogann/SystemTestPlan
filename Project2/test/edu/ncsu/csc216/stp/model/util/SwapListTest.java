@@ -17,7 +17,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testSwapList() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 	}
 
@@ -26,7 +26,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testAdd() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		
 		list.add("Hello");
@@ -67,7 +67,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testRemove() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		list.add("Hello");
 		// test size
@@ -123,7 +123,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testMoveUp() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		list.add("Hello");
 		// test size
@@ -171,7 +171,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testMoveDown() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		list.add("Hello");
 		// test size
@@ -219,7 +219,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testMoveToFront() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		list.add("Hello");
 		// test size
@@ -266,7 +266,7 @@ class SwapListTest {
 	 */
 	@Test
 	public void testMoveToBack() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 		list.add("Hello");
 		// test size
@@ -312,7 +312,7 @@ class SwapListTest {
 	 */
 	@Test
 	void testGet() {
-		SwapList<String> list = new SwapList<>();
+		SwapList<String> list = assertDoesNotThrow(() -> new SwapList<>(), "Should not throw exception");
 		assertEquals(0, list.size());
 	}
 

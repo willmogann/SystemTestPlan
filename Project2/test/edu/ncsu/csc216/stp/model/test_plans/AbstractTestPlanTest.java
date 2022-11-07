@@ -20,7 +20,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testAbstractTestPlan() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		assertEquals("Test Plan Name", ats.getTestPlanName());
 		assertEquals(0, ats.getTestCases().size());
 	}
@@ -30,7 +30,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testSetTestPlanName() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.setTestPlanName("Other plan name");
 		assertEquals("Other plan name", ats.getTestPlanName());
 		
@@ -62,7 +62,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testAddTestCase() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		assertEquals(1, ats.getTestCases().size());
 		ats.addTestCase(new TestCase("id1", "type1", "description1", "expected results1"));
@@ -77,7 +77,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testRemoveTestCase() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		ats.addTestCase(new TestCase("id1", "type1", "description1", "expected results1"));
 		ats.addTestCase(new TestCase("id2", "type2", "description2", "expected results2"));
@@ -101,7 +101,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testGetNumberOfFailingTests() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		ats.addTestResult(0, false, "Actual result");
 		ats.addTestCase(new TestCase("id1", "type1", "description1", "expected results1"));
@@ -116,7 +116,7 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testAddTestResult() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		ats.addTestResult(0, false, "Actual result");
 		assertEquals("- FAIL: Actual result", ats.getTestCase(0).getActualResultsLog());
@@ -127,9 +127,9 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testHashCode() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
-		AbstractTestPlan ats1 = new TestPlan("Test Plan Name");
-		AbstractTestPlan ats2 = new TestPlan("Another Test Plan Name");		
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		AbstractTestPlan ats1 = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		AbstractTestPlan ats2 = assertDoesNotThrow(() -> new TestPlan("Another Test Plan Name"), "Should not throw exception");		
 		assertEquals(ats.hashCode(), ats1.hashCode());
 		assertNotEquals(ats.hashCode(), ats2.hashCode());
 	}
@@ -139,10 +139,10 @@ class AbstractTestPlanTest {
 	 */
 	@Test
 	void testEquals() {
-		AbstractTestPlan ats = new TestPlan("Test Plan Name");
-		AbstractTestPlan ats1 = new TestPlan("Test Plan Name");
-		AbstractTestPlan ats2 = new TestPlan("Another Test Plan Name");	
-		AbstractTestPlan ats3 = new TestPlan("test plan name");
+		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		AbstractTestPlan ats1 = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
+		AbstractTestPlan ats2 = assertDoesNotThrow(() -> new TestPlan("Another Test Plan Name"), "Should not throw exception");		
+		AbstractTestPlan ats3 = assertDoesNotThrow(() -> new TestPlan("test plan name"), "Should not throw exception");
 		//TestCase tc = new TestCase("id", "type", "description", "expected results");
 		assertTrue(ats.equals(ats1));
 		assertTrue(ats.equals(ats3));

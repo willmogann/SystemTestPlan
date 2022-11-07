@@ -19,7 +19,7 @@ class FailingTestListTest {
 	 */
 	@Test
 	void testFailingTestList() {
-		FailingTestList ft = new FailingTestList();
+		FailingTestList ft = assertDoesNotThrow(() -> new FailingTestList(), "Should not throw exception");
 		assertEquals(FailingTestList.FAILING_TEST_LIST_NAME, ft.getTestPlanName());
 		assertEquals(0, ft.getTestCases().size());
 	}
@@ -29,7 +29,7 @@ class FailingTestListTest {
 	 */
 	@Test
 	void testSetTestPlanName() {
-		FailingTestList ft = new FailingTestList();
+		FailingTestList ft = assertDoesNotThrow(() -> new FailingTestList(), "Should not throw exception");
 		// test invalid name to set
 		Exception e1 = assertThrows(IllegalArgumentException.class, () -> ft.setTestPlanName("Name"));
 		assertEquals("The Failing Tests list cannot be edited.", e1.getMessage());
@@ -40,7 +40,7 @@ class FailingTestListTest {
 	 */
 	@Test
 	void testAddTestCase() {
-		FailingTestList ft = new FailingTestList();
+		FailingTestList ft = assertDoesNotThrow(() -> new FailingTestList(), "Should not throw exception");
 		// test add passing test - should throw IAE
 		TestCase testCase = new TestCase("id", "type", "description", "expected results");
 		testCase.addTestResult(true, "Actual result");
@@ -64,13 +64,13 @@ class FailingTestListTest {
 								{ "id1", "type1", "" } }; 
 		
 		// construct test cases
-		TestPlan tp = new TestPlan("Test Plan 1");
+		TestPlan tp = assertDoesNotThrow(() -> new TestPlan("Test Plan 1"), "Should not throw exception");
 		tp.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		tp.addTestResult(0, false, "Actual results");
 		TestCase tc = new TestCase("id1", "type1", "description1", "expected results1");
 		tc.addTestResult(false, "Actual results1");
 		
-		FailingTestList ft = new FailingTestList();
+		FailingTestList ft = assertDoesNotThrow(() -> new FailingTestList(), "Should not throw exception");
 		ft.addTestCase(tp.getTestCase(0));
 		ft.addTestCase(tc);
 		
@@ -90,7 +90,7 @@ class FailingTestListTest {
 	 */
 	@Test
 	void testClearTests() {
-		FailingTestList ft = new FailingTestList();
+		FailingTestList ft = assertDoesNotThrow(() -> new FailingTestList(), "Should not throw exception");
 		TestCase tc = new TestCase("id1", "type1", "description1", "expected results1");
 		tc.addTestResult(false, "Actual results1");
 		ft.addTestCase(tc);
