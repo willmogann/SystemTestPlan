@@ -58,10 +58,24 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 			front = new ListNode(element, null);
 		} else {
 			ListNode current = front;
-			while (current.next != null) {
-				current = current.next;
+			// case for adding to front
+			if (element.compareTo(front.data) < 0) {
+				front = new ListNode(element, front);
+			} else {
+				while (current.next != null) {
+					// if element is larger than element, add it after the element
+					if (element.compareTo(current.data) > 0 && element.compareTo(current.next.data) < 0) {
+						current.next = new ListNode(element, current.next);
+						break;
+					} else {
+						current = current.next;
+					}
+				}
+				// if we reached end of list and did not add
+				if (current.next == null) {
+					current.next = new ListNode(element, null);
+				}
 			}
-			current.next = new ListNode(element, null);
 		}
 		size++;
 	}
@@ -123,7 +137,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 				}
 				current = current.next;
 			}
-			return front.data.equals(element);
+			return front.data.equals(element) || current.data.equals(element);
 		}
 	}
 

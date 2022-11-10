@@ -37,11 +37,19 @@ class SortedListTest {
 		assertEquals(2, list.size());
 		// ensure was added to back
 		assertEquals("World", list.get(1));
-		list.add("!");
+		list.add("Apple");
 		// test size
 		assertEquals(3, list.size());
 		// ensure was added to back
-		assertEquals("!", list.get(2));
+//		System.out.println(list.get(0));
+//		System.out.println(list.get(1));
+//		System.out.println(list.get(2));
+		assertEquals("Apple", list.get(0));
+		
+		
+		list.add("All");
+		assertEquals(4, list.size());
+		assertEquals("All", list.get(0));
 		
 		// test invalid cases
 		Exception e1 = assertThrows(NullPointerException.class, () -> list.add(null));
@@ -58,47 +66,47 @@ class SortedListTest {
 	@Test
 	void testRemove() {
 		SortedList<String> list = assertDoesNotThrow(() -> new SortedList<>(), "Should not throw exception");
-		list.add("Hello");
+		list.add("hello");
 		// test size
 		assertEquals(1, list.size());
 		// ensure was added to back
-		assertEquals("Hello", list.get(0));
-		list.add("World");
+		assertEquals("hello", list.get(0));
+		list.add("world");
 		// test size
 		assertEquals(2, list.size());
 		// ensure was added to back
-		assertEquals("World", list.get(1));
+		assertEquals("world", list.get(1));
 		list.add("!");
 		// test size
 		assertEquals(3, list.size());
 		// ensure was added to back
-		assertEquals("!", list.get(2));
+		assertEquals("!", list.get(0));
 		list.add("filler1");
 		// test size
 		assertEquals(4, list.size());
 		// ensure was added to back
-		assertEquals("filler1", list.get(3));
+		assertEquals("filler1", list.get(1));
 		list.add("filler2");
 		// test size
 		assertEquals(5, list.size());
 		// ensure was added to back
-		assertEquals("filler2", list.get(4));
-		
+		assertEquals("filler2", list.get(2));
+		assertEquals("filler1", list.get(1));
 		// test remove from front
-		assertEquals("Hello", list.remove(0));
+		assertEquals("!", list.remove(0));
 		assertEquals(4, list.size());
-		assertEquals("World", list.get(0));
+		assertEquals("filler1", list.get(0));
 		
 		// test remove from end
-		assertEquals("filler2", list.remove(3));
+		assertEquals("filler2", list.remove(1));
 		assertEquals(3, list.size());
-		assertEquals("filler1", list.get(2));
+		assertEquals("filler1", list.get(0));
 		
 		// test remove from middle
-		assertEquals("!", list.remove(1));
+		assertEquals("hello", list.remove(1));
 		assertEquals(2, list.size());
-		assertEquals("World", list.get(0));
-		assertEquals("filler1", list.get(1));
+		assertEquals("filler1", list.get(0));
+		assertEquals("world", list.get(1));
 		
 		// test invalid index
 		Exception e1 = assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));

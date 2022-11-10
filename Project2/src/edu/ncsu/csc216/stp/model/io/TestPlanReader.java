@@ -1,11 +1,14 @@
 package edu.ncsu.csc216.stp.model.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 import edu.ncsu.csc216.stp.model.util.ISortedList;
+import edu.ncsu.csc216.stp.model.util.SortedList;
 
 /**
  * The TestPlanReader class is one of two file IO classes in the
@@ -32,7 +35,39 @@ public class TestPlanReader {
 	 * if it does not exist.
 	 */
 	public static ISortedList<TestPlan> readTestPlansFile(File file) {
-		return null;
+//		if (!file.exists()) {
+//			throw new IllegalArgumentException("Unable to load file.");
+//		}
+		// scanner to input whole file into a string
+		Scanner scnr1 = null;
+		// scanner to process each test plan
+		Scanner scnr2 = null;
+		ISortedList<TestPlan> testPlans = new SortedList<TestPlan>();
+		
+		try {
+			scnr1 = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// throw IAE if file not found
+			throw new IllegalArgumentException("Unable to load file.");
+		}
+		
+		try {
+			String fileString = "";
+			while (scnr1.hasNextLine()) {
+				fileString += scnr1.nextLine() + "\n";
+			}
+			scnr1.close();
+			// break string into projects
+			scnr2 = new Scanner(fileString);
+			scnr2.useDelimiter("\\r?\\n?[!]");
+			while (scnr2.hasNext()) {
+				testPlans.add(processTestPlan(scnr2.next()));
+			}
+		} catch (IllegalArgumentException e) {
+			// skip test plan
+		}
+		scnr2.close();
+		return testPlans;
 	}
 	
 	/**
