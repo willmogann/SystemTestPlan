@@ -182,7 +182,7 @@ public class TestCase {
 	 * This method will return true if the last TestResult in the log is passing.
 	 * If there are no TestResults in the log, then the test case is considered failing.
 	 * 
-	 * @return whether the test case is passing or not
+	 * @return true if test case is passing, false if not
 	 */
 	public boolean isTestCasePassing() {
 		if (testResults.size() == 0) {
