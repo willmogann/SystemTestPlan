@@ -42,7 +42,7 @@ class TestPlanReaderTest {
 		wolfScheduler.addTestCase(test3);
 		
 		// second test plan
-		TestPlan packScheduler = new TestPlan("PackSchedler");
+		TestPlan packScheduler = new TestPlan("PackScheduler");
 		TestCase test0a = 
 				new TestCase("test0", "Invalid", "description", "expected results\nwith multiple lines");
 		test0a.addTestResult(true, "actual results");
@@ -77,8 +77,8 @@ class TestPlanReaderTest {
 				() -> assertEquals(expectedCases1.get(0).getExpectedResults(), actualCases1.get(0).getExpectedResults()),
 				() -> assertEquals(expectedCases1.get(0).getActualResultsLog(), actualCases1.get(0).getActualResultsLog()));
 		
-		ISwapList<TestCase> expectedCases2 = expected.get(0).getTestCases();
-		ISwapList<TestCase> actualCases2 = actual.get(0).getTestCases();
+		ISwapList<TestCase> expectedCases2 = expected.get(1).getTestCases();
+		ISwapList<TestCase> actualCases2 = actual.get(1).getTestCases();
 		assertEquals(expectedCases2.size(), actualCases2.size());
 		assertAll("Checking fields for case 1 in second project",
 				() -> assertEquals(expectedCases2.get(0).getTestCaseId(), actualCases2.get(0).getTestCaseId()),
