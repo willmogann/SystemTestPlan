@@ -251,9 +251,10 @@ public class TestCase {
 	 * @return the string representation of the test case.
 	 */
 	public String toString() {
-		return "# " + testCaseId + "," + testType + "\n"
-			 + "* " + testDescription.trim() + "\n"
-			 + "* " + expectedResults.trim() + "\n"
-			 + getActualResultsLog();
+		String returnString = "# " + testCaseId + "," + testType + "\n"
+				 + "* " + testDescription.trim() + "\n"
+				 + "* " + expectedResults.trim() + "\n"
+				 + getActualResultsLog();
+		return returnString.trim();
 	}
 }

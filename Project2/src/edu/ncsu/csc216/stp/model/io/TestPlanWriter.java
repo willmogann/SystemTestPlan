@@ -39,7 +39,7 @@ public class TestPlanWriter {
 					fileWriter.print(current.getTestCases().get(j) + "\n");
 				}
 			}
-			fileWriter.print("\n");
+			//fileWriter.print("\n");
 			fileWriter.close();
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to save file.");

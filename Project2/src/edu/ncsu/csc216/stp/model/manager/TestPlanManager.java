@@ -77,12 +77,15 @@ public class TestPlanManager {
 	 */
 	public void loadTestPlans(File testPlanFile) {
 		ISortedList<TestPlan> potentialTestPlans = TestPlanReader.readTestPlansFile(testPlanFile);
-		for (int i = 0; i < testPlans.size(); i++) {
-			try {
+		for (int i = 0; i < potentialTestPlans.size(); i++) {
+			if (!testPlans.contains(potentialTestPlans.get(i))) {
 				testPlans.add(potentialTestPlans.get(i));
-			} catch (IllegalArgumentException e) {
-				// skip this test plan, duplicate
 			}
+//			try {
+//				testPlans.add(potentialTestPlans.get(i));
+//			} catch (IllegalArgumentException e) {
+//				// skip this test plan, duplicate
+//			}
 		}
 		setCurrentTestPlan(FailingTestList.FAILING_TEST_LIST_NAME);
 		isChanged = true;
@@ -126,7 +129,7 @@ public class TestPlanManager {
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
-		
+		setCurrentTestPlan(testPlanName);
 		isChanged = true;
 	}
 	
@@ -136,10 +139,10 @@ public class TestPlanManager {
 	 * @return an array containing the names of the active test plans
 	 */
 	public String[] getTestPlanNames() {
-		String[] names = new String[testPlans.size()];
+		String[] names = new String[testPlans.size() + 1];
 		names[0] = FailingTestList.FAILING_TEST_LIST_NAME;
-		for (int i = 1; i < names.length; i++) {
-			names[i] = testPlans.get(i).getTestPlanName();
+		for (int i = 1; i <= testPlans.size(); i++) {
+			names[i] = testPlans.get(i - 1).getTestPlanName();
 		}
 		return names;
 	}
@@ -274,7 +277,10 @@ public class TestPlanManager {
 	 * @param actualResults the actual results of the test execution
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
-		
+		currentTestPlan.addTestResult(idx, passing, actualResults);
+		if (!passing) {
+			getFailingTests();
+		}
 	}
 	
 	/**

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.test_plans.FailingTestList;
 //import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
+//import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 //import edu.ncsu.csc216.stp.model.util.ISortedList;
 //import edu.ncsu.csc216.stp.model.util.SortedList;
@@ -26,7 +27,7 @@ class TestPlanManagerTest {
 	private String actFileName = "test-files/actual_out.txt";
 	
 	/** file path for expected file */
-	private String expFileName = "test-files/expected_out.txt";
+	private String expFileName = "test-files/test-plans0.txt";
 
 	/**
 	 * Tests the TestPlanManager constructor
@@ -45,12 +46,12 @@ class TestPlanManagerTest {
 	void testLoadTestPlans() {
 		TestPlanManager tpm = assertDoesNotThrow(() -> new TestPlanManager());
 		tpm.loadTestPlans(new File(expFileName));
-		
-		assertEquals(2, tpm.getTestPlanNames().length);
-		assertEquals("TestPlan1", tpm.getTestPlanNames()[0]);
-		assertEquals("TestPlan2", tpm.getTestPlanNames()[1]);
+
+		assertEquals(3, tpm.getTestPlanNames().length);
+		assertEquals("PackScheduler", tpm.getTestPlanNames()[1]);
+		assertEquals("WolfScheduler", tpm.getTestPlanNames()[2]);
 		// check that failing tests list is the one set to current
-		assertEquals(2, tpm.getCurrentTestPlan().getTestCases().size());
+		assertEquals(3, tpm.getCurrentTestPlan().getTestCases().size());
 	}
 
 	/**
@@ -59,33 +60,27 @@ class TestPlanManagerTest {
 	@Test
 	void testSaveTestPlans() {
 		TestPlanManager tpm = assertDoesNotThrow(() -> new TestPlanManager());
-		tpm.addTestPlan("TestPlan1");
-		tpm.addTestCase(new TestCase("ID 0", "type 0", "description 0", "expected results 0"));
-		tpm.addTestResult(0, false, "actual results 0-1");
-		tpm.addTestCase(new TestCase("ID 1", "type 1", "description 1", "expected results 1"));
-		tpm.addTestResult(1, true, "actual results 1-1");
-		tpm.addTestResult(1, false, "actual results 1-2");
-		tpm.addTestCase(new TestCase("ID 2", "type 2", "description 2", "expected results 2"));
-		tpm.addTestResult(1, true, "actual results 2-1");
-		tpm.addTestResult(1, true, "actual results 2-2");
-		tpm.addTestPlan("TestPlan2");
-//		TestPlan testPlan1 = new TestPlan("TestPlan1");
-//		TestCase tc0 = new TestCase("ID 0", "type 0", "description 0", "expected results 0");
-//		tc0.addTestResult(false, "actual results 0-1");
-//		testPlan1.addTestCase(tc0);
-//		TestCase tc1 = new TestCase("ID 1", "type 1", "description 1", "expected results 1");
-//		tc1.addTestResult(true, "actual results 1-1");
-//		tc1.addTestResult(false, "actual results 1-2");
-//		testPlan1.addTestCase(tc1);
-//		TestCase tc2 = new TestCase("ID 2", "type 2", "description 2", "expected results 2");
-//		tc2.addTestResult(true, "actual results 2-1");
-//		tc2.addTestResult(true, "actual results 2-2");
-//		testPlan1.addTestCase(tc2);
-//		TestPlan testPlan2 = new TestPlan("TestPlan2");
+		// first test plan
+		tpm.addTestPlan("WolfScheduler");
+		tpm.addTestCase(new TestCase("test1", "Equivalence Class", "description\nwith multiple lines", "expected results\nwith multiple lines"));
+		tpm.addTestResult(0, true, "actual results");
+		tpm.addTestResult(0, false, "actual results on\nmultiple lines");
+		tpm.addTestResult(0, true, "actual results\non three\nlines");
+		tpm.addTestCase(new TestCase("test2", "Boundary Value", "description", "expected results"));
+		tpm.addTestCase(new TestCase("test3", "Requirements", "description\non multiple lines", "expected results"));
+		tpm.addTestResult(2, false, "actual results");
+		// second test plan
+		tpm.addTestPlan("PackScheduler");
+		tpm.addTestCase(new TestCase("test0", "Invalid", "description", "expected results\nwith multiple lines"));
+		tpm.addTestResult(0, true, "actual results");
+		tpm.addTestResult(0, false, "actual results");
+		tpm.addTestCase(new TestCase("test1", "Equivalence Class", "description", "expected results"));
+		tpm.addTestResult(1, true, "actual results");
 		
-		assertEquals("TestPlan2", tpm.getCurrentTestPlan().getTestPlanName());
+		
+		assertEquals("PackScheduler", tpm.getCurrentTestPlan().getTestPlanName());
 		assertDoesNotThrow(() -> tpm.saveTestPlans(new File(actFileName)));
-		checkFiles(expFileName, actFileName);
+		checkFiles("test-files/expected_out_1.txt", actFileName);
 	}
 	
 	/**
@@ -126,9 +121,9 @@ class TestPlanManagerTest {
 	@Test
 	void testAddTestPlan() {
 		TestPlanManager tpm = assertDoesNotThrow(() -> new TestPlanManager());
-		assertEquals(0, tpm.getTestPlanNames().length);
-		tpm.addTestPlan("TestPlan1");
 		assertEquals(1, tpm.getTestPlanNames().length);
+		tpm.addTestPlan("TestPlan1");
+		assertEquals(2, tpm.getTestPlanNames().length);
 		assertEquals("TestPlan1", tpm.getCurrentTestPlan().getTestPlanName());
 	}
 
@@ -138,10 +133,10 @@ class TestPlanManagerTest {
 	@Test
 	void testGetTestPlanNames() {
 		TestPlanManager tpm = assertDoesNotThrow(() -> new TestPlanManager());
-		assertEquals(0, tpm.getTestPlanNames().length);
-		tpm.addTestPlan("TestPlan1");
 		assertEquals(1, tpm.getTestPlanNames().length);
-		assertEquals("TestPlan1", tpm.getTestPlanNames()[0]);
+		tpm.addTestPlan("TestPlan1");
+		assertEquals(2, tpm.getTestPlanNames().length);
+		assertEquals("TestPlan1", tpm.getTestPlanNames()[1]);
 	}
 
 	/**
@@ -195,7 +190,7 @@ class TestPlanManagerTest {
 		assertEquals("The Failing Tests list may not be deleted.", e1.getMessage());
 		tpm.addTestPlan("TestPlan1");
 		tpm.removeTestPlan();
-		assertEquals(0, tpm.getTestPlanNames().length);
+		assertEquals(1, tpm.getTestPlanNames().length);
 	}
 
 	/**
@@ -241,7 +236,7 @@ class TestPlanManagerTest {
 		tpm.clearTestPlans();
 		assertFalse(tpm.isChanged());
 		assertEquals(FailingTestList.FAILING_TEST_LIST_NAME, tpm.getCurrentTestPlan().getTestPlanName());
-		assertEquals(0, tpm.getTestPlanNames().length);
+		assertEquals(1, tpm.getTestPlanNames().length);
 		assertEquals(0, tpm.getCurrentTestPlan().getTestCases().size());
 	}
 

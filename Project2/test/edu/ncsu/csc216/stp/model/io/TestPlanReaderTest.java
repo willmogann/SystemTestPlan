@@ -37,7 +37,7 @@ class TestPlanReaderTest {
 				new TestCase("test2", "Boundary Value", "description", "expected results");
 		wolfScheduler.addTestCase(test2);
 		TestCase test3 = 
-				new TestCase("test3", "Requirements", "description\n3on multiple lines", "expected results");
+				new TestCase("test3", "Requirements", "description\non multiple lines", "expected results");
 		test3.addTestResult(false, "actual results");
 		wolfScheduler.addTestCase(test3);
 		
