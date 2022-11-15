@@ -7,7 +7,7 @@ import edu.ncsu.csc216.stp.model.tests.TestCase;
  * This class extends AbstractTestPlan so it inherits the behavior and fields of the parent class.
  * Additional behavior that is overridden from the parent class is changing the way tests are
  * added to the test plan, and the 2D array of strings that is displayed in the GUI is different.
- * This class also implements the Comparable<> interface, so it has the ability to compare two objects
+ * This class also implements the Comparable interface, so it has the ability to compare two objects
  * and add new test cases into the list in sorted order. There are no additional fields other
  * than the inherited ones. 
  * 

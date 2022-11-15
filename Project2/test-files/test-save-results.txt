@@ -1,0 +1,16 @@
+! Test Plan 1
+# Test 1: New Staff,Requirements
+* 1. Run PackScheduler GUI, login with information
+2. Enter the following:
+First Name: Jack
+Last Name: McChew
+ID: "jmchew"
+Email: jmchew@edu.com
+Password: Password
+Repeat Password: Password
+Max Credits: 18
+3. Click add student
+4. check results
+* PackScheduler GUI loads with empty student directory
+Student directory now has one entry with the following information:
+Jack McChew jmchew
