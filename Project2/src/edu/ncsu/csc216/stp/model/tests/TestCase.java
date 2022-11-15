@@ -219,7 +219,11 @@ public class TestCase {
 		for (int i = 0; i < testResults.size(); i++) {
 			returnString += "- " + testResults.get(i).toString() + "\n";
 		}
-		return returnString.trim();
+		if (returnString.length() != 0) {
+			return returnString.substring(0, returnString.length() - 1);
+		} else {
+			return returnString;
+		}
 	}
 	
 	/**
