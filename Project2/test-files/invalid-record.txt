@@ -1,0 +1,4 @@
+This is an example of a text file with invalid records
+# There is no test plan name
+- This is not in the correct place
+* Go Pack

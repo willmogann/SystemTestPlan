@@ -121,15 +121,16 @@ public class TestPlanManager {
 	 * @throws IllegalArgumentException if there is an error adding the test plan
 	 */
 	public void addTestPlan(String testPlanName) {
-		if (testPlanName.equalsIgnoreCase(FailingTestList.FAILING_TEST_LIST_NAME)) {
+		String trimmedTestPlanName = testPlanName.trim();
+		if (trimmedTestPlanName.equalsIgnoreCase(FailingTestList.FAILING_TEST_LIST_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		try {
-			testPlans.add(new TestPlan(testPlanName));
+			testPlans.add(new TestPlan(trimmedTestPlanName));
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
-		setCurrentTestPlan(testPlanName);
+		setCurrentTestPlan(trimmedTestPlanName);
 		isChanged = true;
 	}
 	
