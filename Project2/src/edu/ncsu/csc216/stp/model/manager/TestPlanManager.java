@@ -210,12 +210,13 @@ public class TestPlanManager {
 		if (currentTestPlan instanceof FailingTestList) {
 			throw new IllegalArgumentException("The Failing Tests list may not be edited.");
 		}
-		if (testPlanName.equalsIgnoreCase(FailingTestList.FAILING_TEST_LIST_NAME)) {
+		String trimmedTestPlanName = testPlanName.trim();
+		if (trimmedTestPlanName.equalsIgnoreCase(FailingTestList.FAILING_TEST_LIST_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		int currentTestIndex = 0;
 		for (int i = 0; i < testPlans.size(); i++) {
-			if (testPlanName.equalsIgnoreCase(testPlans.get(i).getTestPlanName())) {
+			if (trimmedTestPlanName.equalsIgnoreCase(testPlans.get(i).getTestPlanName())) {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 			if (testPlans.get(i).getTestPlanName().equalsIgnoreCase(currentTestPlan.getTestPlanName())) {
@@ -223,7 +224,7 @@ public class TestPlanManager {
 			}
 		}
 		testPlans.remove(currentTestIndex);
-		currentTestPlan.setTestPlanName(testPlanName);
+		currentTestPlan.setTestPlanName(trimmedTestPlanName);
 		testPlans.add((TestPlan) currentTestPlan);
 		isChanged = true;
 	}
