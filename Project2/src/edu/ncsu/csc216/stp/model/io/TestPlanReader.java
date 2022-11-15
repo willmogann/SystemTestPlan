@@ -24,6 +24,11 @@ import edu.ncsu.csc216.stp.model.util.SortedList;
  *
  */
 public class TestPlanReader {
+	
+	/**
+	 * Constructor for test plan reader
+	 */
+	public TestPlanReader() { }
 
 	/**
 	 * This method receives a file and reads the contents of it

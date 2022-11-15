@@ -6,7 +6,7 @@ package edu.ncsu.csc216.stp.model.util;
  * an Array-Based list which has functionality to get an element at an index
  * to get the current size of the list. 
  * The fields of this class include the underlying Array of this implementation
- * of ArrayList, the size of the array, and a static field for the initial capacity.
+ * of Array List, the size of the array, and a static field for the initial capacity.
  * This array will hold objects of type TestResult which is the testResult, so it interacts with the
  * TestCase class.
  * 
@@ -31,7 +31,7 @@ public class Log<E> implements ILog<E> {
 	private static final int INIT_CAPACITY = 10;
 	
 	/**
-	 * Constructs a new Log ArrayList. It creates a new
+	 * Constructs a new Log Array List. It creates a new
 	 * underlying array with the initial size and sets the size 
 	 * field to zero. 
 	 */

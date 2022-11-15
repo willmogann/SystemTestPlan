@@ -18,6 +18,11 @@ import edu.ncsu.csc216.stp.model.util.ISortedList;
  *
  */
 public class TestPlanWriter {
+	
+	/**
+	 * Constructor for test plan writer
+	 */
+	public TestPlanWriter() { } 
 
 	/**
 	 * Uses the input file with the file name and the list of testPlans,
@@ -36,7 +41,7 @@ public class TestPlanWriter {
 				TestPlan current = testPlans.get(i);
 				fileWriter.print("! " + current.getTestPlanName() + "\n");
 				for (int j = 0; j < current.getTestCases().size(); j++) {
-					fileWriter.print(current.getTestCases().get(j) + "\n");
+					fileWriter.print(current.getTestCases().get(j));
 				}
 			}
 			//fileWriter.print("\n");

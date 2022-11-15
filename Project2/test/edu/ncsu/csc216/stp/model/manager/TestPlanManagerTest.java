@@ -216,9 +216,9 @@ class TestPlanManagerTest {
 		tpm.addTestCase(new TestCase("ID 0", "type 0", "description 0", "expected results 0"));
 		assertEquals("ID 0", tpm.getCurrentTestPlan().getTestCases().get(0).getTestCaseId());
 		tpm.addTestResult(0, false, "Test Results");
-		assertEquals("- FAIL: Test Results", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
+		assertEquals("- FAIL: Test Results\n", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
 		tpm.setCurrentTestPlan(FailingTestList.FAILING_TEST_LIST_NAME);
-		assertEquals("- FAIL: Test Results", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
+		assertEquals("- FAIL: Test Results\n", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
 	}
 
 	/**
@@ -231,7 +231,7 @@ class TestPlanManagerTest {
 		tpm.addTestCase(new TestCase("ID 0", "type 0", "description 0", "expected results 0"));
 		tpm.addTestResult(0, false, "Test Results");
 		assertEquals("ID 0", tpm.getCurrentTestPlan().getTestCases().get(0).getTestCaseId());
-		assertEquals("- FAIL: Test Results", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
+		assertEquals("- FAIL: Test Results\n", tpm.getCurrentTestPlan().getTestCases().get(0).getActualResultsLog());
 		
 		tpm.clearTestPlans();
 		assertFalse(tpm.isChanged());

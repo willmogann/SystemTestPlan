@@ -119,7 +119,7 @@ class AbstractTestPlanTest {
 		AbstractTestPlan ats = assertDoesNotThrow(() -> new TestPlan("Test Plan Name"), "Should not throw exception");
 		ats.addTestCase(new TestCase("id", "type", "description", "expected results"));
 		ats.addTestResult(0, false, "Actual result");
-		assertEquals("- FAIL: Actual result", ats.getTestCase(0).getActualResultsLog());
+		assertEquals("- FAIL: Actual result\n", ats.getTestCase(0).getActualResultsLog());
 	}
 	
 	/**
