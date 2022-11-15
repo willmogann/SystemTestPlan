@@ -28,7 +28,9 @@ public class TestPlanReader {
 	/**
 	 * Constructor for test plan reader
 	 */
-	public TestPlanReader() { }
+	public TestPlanReader() { 
+		// empty constructor
+	}
 
 	/**
 	 * This method receives a file and reads the contents of it

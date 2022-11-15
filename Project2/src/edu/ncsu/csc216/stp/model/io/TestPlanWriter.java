@@ -22,7 +22,9 @@ public class TestPlanWriter {
 	/**
 	 * Constructor for test plan writer
 	 */
-	public TestPlanWriter() { } 
+	public TestPlanWriter() {
+		// empty constructor
+	}
 
 	/**
 	 * Uses the input file with the file name and the list of testPlans,

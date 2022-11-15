@@ -19,6 +19,15 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TestPlanReaderTest {
+	
+	/**
+	 * Test constructor
+	 */
+	@Test
+	void testTestPlanReader() {
+		TestPlanReader tpr = new TestPlanReader();
+		assertNotEquals(null, tpr);
+	}
 
 	/**
 	 * Tests the readTestPlansFile() method

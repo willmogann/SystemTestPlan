@@ -26,6 +26,15 @@ class TestPlanWriterTest {
 	
 	/** file path for expected file */
 	private String expFileName = "test-files/expected_out.txt";
+	
+	/**
+	 * test constructor
+	 */
+	@Test
+	void testTestPlanWriter() {
+		TestPlanWriter tpw = new TestPlanWriter();
+		assertNotEquals(null, tpw);
+	}
 
 	/**
 	 * Tests the writeTestPlanFile() method
