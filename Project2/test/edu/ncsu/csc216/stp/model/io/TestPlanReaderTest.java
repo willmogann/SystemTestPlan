@@ -95,5 +95,13 @@ class TestPlanReaderTest {
 		// IAE should be thrown here
 		Exception e1 = assertThrows(IllegalArgumentException.class, () -> TestPlanReader.readTestPlansFile(new File("test-files/test-plans3.txt")));
 		assertEquals("Unable to load file.", e1.getMessage());
+		
+		// test-plans8 file, should create a test plan with no cases
+		ISortedList<TestPlan> expected = new SortedList<>();
+		expected.add(new TestPlan("WolfScheduler"));
+		ISortedList<TestPlan> actual = TestPlanReader.readTestPlansFile(new File("test-files/test-plans8.txt"));
+		assertEquals(1, actual.size());
+		assertEquals(0, actual.get(0).getTestCases().size());
+		assertEquals(expected.get(0).getTestPlanName(), actual.get(0).getTestPlanName());
 	}
 }

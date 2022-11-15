@@ -164,7 +164,11 @@ public class TestPlanReader {
 			testCase.setTestPlan((TestPlan) testPlan);
 			while (scnr.hasNext()) {
 				String actualResult = scnr.next();
-				boolean passing = actualResult.substring(1, 5).trim().equals(TestResult.PASS);
+				String passFailString = actualResult.substring(1, 5).trim();
+				if (!passFailString.equals(TestResult.PASS) && !passFailString.equals(TestResult.FAIL)) {
+					throw new IllegalArgumentException("Need pass or fail string in actual result");
+				}
+				boolean passing = passFailString.equals(TestResult.PASS);
 				String actualResultsText = actualResult.substring(7).trim();
 				testCase.addTestResult(passing, actualResultsText);
 			}
