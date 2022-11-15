@@ -217,7 +217,7 @@ public class TestCase {
 	public String getActualResultsLog() {
 		String returnString = "";
 		for (int i = 0; i < testResults.size(); i++) {
-			returnString += "- " + testResults.get(i).toString() + "\n";
+			returnString += "- " + testResults.get(i).toString() + " \n";
 		}
 		if (returnString.length() != 0) {
 			return returnString.substring(0, returnString.length() - 1);
@@ -259,6 +259,6 @@ public class TestCase {
 				 + "* " + testDescription.trim() + "\n"
 				 + "* " + expectedResults.trim() + "\n"
 				 + getActualResultsLog();
-		return returnString.trim();
+		return returnString;
 	}
 }

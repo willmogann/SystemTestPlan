@@ -88,7 +88,9 @@ class TestCaseTest {
 		TestCase tc = assertDoesNotThrow(() -> new TestCase(TEST_CASE_ID, TEST_TYPE, TEST_DESCRIPTION, EXPECTED_RESULTS),
 				"Should not throw exception");
 		tc.addTestResult(true, "Actual Results Here");
-		assertEquals("- PASS: Actual Results Here", tc.getActualResultsLog());
+		assertEquals("- PASS: Actual Results Here ", tc.getActualResultsLog());
+		tc.addTestResult(true, "Actual Results Here");
+		assertEquals("- PASS: Actual Results Here \n- PASS: Actual Results Here ", tc.getActualResultsLog());
 	}
 
 	/**
@@ -164,8 +166,8 @@ class TestCaseTest {
 						+ "1. Run GUI\n"
 					    + "2. Check Results\n"
 						+ "* GUI Opens to starter page\n"
-					    + "- FAIL: Actual Results Here\n"
-						+ "- PASS: Passing results";
+					    + "- FAIL: Actual Results Here \n"
+						+ "- PASS: Passing results ";
 		assertEquals(expected, tc.toString());
 	}
 
