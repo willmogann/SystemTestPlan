@@ -103,5 +103,10 @@ class TestPlanReaderTest {
 		assertEquals(1, actual.size());
 		assertEquals(0, actual.get(0).getTestCases().size());
 		assertEquals(expected.get(0).getTestPlanName(), actual.get(0).getTestPlanName());
+		
+		// test-plans9
+		ISortedList<TestPlan> actual1 = TestPlanReader.readTestPlansFile(new File("test-files/test-plans9.txt"));
+		assertEquals(1, actual1.size());
+		assertEquals(0, actual.get(0).getTestCases().size());
 	}
 }

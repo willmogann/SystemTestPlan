@@ -169,6 +169,9 @@ public class TestPlanReader {
 					throw new IllegalArgumentException("Need pass or fail string in actual result");
 				}
 				boolean passing = passFailString.equals(TestResult.PASS);
+				if (actualResult.length() < 6) {
+					throw new IllegalArgumentException("Missing actual results");
+				}
 				String actualResultsText = actualResult.substring(7).trim();
 				testCase.addTestResult(passing, actualResultsText);
 			}
