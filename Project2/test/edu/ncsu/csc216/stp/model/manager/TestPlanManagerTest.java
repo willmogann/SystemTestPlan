@@ -239,5 +239,32 @@ class TestPlanManagerTest {
 		assertEquals(1, tpm.getTestPlanNames().length);
 		assertEquals(0, tpm.getCurrentTestPlan().getTestCases().size());
 	}
+	
+	/**
+	 * Recreation of teaching staff test case
+	 */
+	@Test
+	void testRemoveTestPlanTS() {
+		TestPlanManager tpm = assertDoesNotThrow(() -> new TestPlanManager());
+		// try to remove failing test list
+		
+		// create four new test plans
+		
+		// switch to test plan at index 2
+		
+		// delete test plan at index 2
+		
+		// switch to test plan at index 2
+		
+		// delete test plan at index 2
+		
+		// switch to test plan at index 0
+		
+		// delete test plan at index 0
+		
+		// switch to test plan at index 0
+		
+		// delete test plan at index 0
+	}
 
 }

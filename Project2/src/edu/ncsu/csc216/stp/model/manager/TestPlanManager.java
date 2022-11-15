@@ -244,6 +244,7 @@ public class TestPlanManager {
 				}
 			}
 			testPlans.remove(currentTestIndex);
+			currentTestPlan = failingTestList;
 			isChanged = true;
 		}
 	}
